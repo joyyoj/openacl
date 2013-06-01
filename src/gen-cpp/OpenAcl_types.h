@@ -422,49 +422,6 @@ class RoleInfo {
 
 void swap(RoleInfo &a, RoleInfo &b);
 
-typedef struct _PrivilegeList__isset {
-  _PrivilegeList__isset() : entity(false) {}
-  bool entity;
-} _PrivilegeList__isset;
-
-class PrivilegeList {
- public:
-
-  static const char* ascii_fingerprint; // = "636807D016867BC3A79FD54005E0677E";
-  static const uint8_t binary_fingerprint[16]; // = {0x63,0x68,0x07,0xD0,0x16,0x86,0x7B,0xC3,0xA7,0x9F,0xD5,0x40,0x05,0xE0,0x67,0x7E};
-
-  PrivilegeList() {
-  }
-
-  virtual ~PrivilegeList() throw() {}
-
-  Entity entity;
-
-  _PrivilegeList__isset __isset;
-
-  void __set_entity(const Entity& val) {
-    entity = val;
-  }
-
-  bool operator == (const PrivilegeList & rhs) const
-  {
-    if (!(entity == rhs.entity))
-      return false;
-    return true;
-  }
-  bool operator != (const PrivilegeList &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const PrivilegeList & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-void swap(PrivilegeList &a, PrivilegeList &b);
-
 typedef struct _AuditInfo__isset {
   _AuditInfo__isset() : date(false), detail(false) {}
   bool date;

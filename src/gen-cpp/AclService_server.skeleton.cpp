@@ -87,6 +87,16 @@ class AclServiceHandler : virtual public AclServiceIf {
     printf("authenticateRole\n");
   }
 
+  void expireUserPrivilege(AuthStatus& _return, const User& user) {
+    // Your implementation goes here
+    printf("expireUserPrivilege\n");
+  }
+
+  void expireRolePrivilege(AuthStatus& _return, const Role& role) {
+    // Your implementation goes here
+    printf("expireRolePrivilege\n");
+  }
+
   void getRoleInfo(RoleInfo& _return, const Role& role) {
     // Your implementation goes here
     printf("getRoleInfo\n");

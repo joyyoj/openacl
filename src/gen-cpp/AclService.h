@@ -28,6 +28,8 @@ class AclServiceIf {
   virtual void revokePrivilege(AuthStatus& _return, const Role& role, const std::vector<Privilege> & privilege, const AuditInfo& info) = 0;
   virtual void authenticateUser(AuthStatus& _return, const User& user, const std::vector<Privilege> & privilege) = 0;
   virtual void authenticateRole(AuthStatus& _return, const Role& role, const std::vector<Privilege> & privilege) = 0;
+  virtual void expireUserPrivilege(AuthStatus& _return, const User& user) = 0;
+  virtual void expireRolePrivilege(AuthStatus& _return, const Role& role) = 0;
   virtual void getRoleInfo(RoleInfo& _return, const Role& role) = 0;
   virtual void getUserInfo(UserInfo& _return, const User& user) = 0;
   virtual void getRolesByUser(std::vector<Role> & _return, const User& user) = 0;
@@ -102,6 +104,12 @@ class AclServiceNull : virtual public AclServiceIf {
     return;
   }
   void authenticateRole(AuthStatus& /* _return */, const Role& /* role */, const std::vector<Privilege> & /* privilege */) {
+    return;
+  }
+  void expireUserPrivilege(AuthStatus& /* _return */, const User& /* user */) {
+    return;
+  }
+  void expireRolePrivilege(AuthStatus& /* _return */, const Role& /* role */) {
     return;
   }
   void getRoleInfo(RoleInfo& /* _return */, const Role& /* role */) {
@@ -1642,6 +1650,222 @@ class AclService_authenticateRole_presult {
 
 };
 
+typedef struct _AclService_expireUserPrivilege_args__isset {
+  _AclService_expireUserPrivilege_args__isset() : user(false) {}
+  bool user;
+} _AclService_expireUserPrivilege_args__isset;
+
+class AclService_expireUserPrivilege_args {
+ public:
+
+  AclService_expireUserPrivilege_args() {
+  }
+
+  virtual ~AclService_expireUserPrivilege_args() throw() {}
+
+  User user;
+
+  _AclService_expireUserPrivilege_args__isset __isset;
+
+  void __set_user(const User& val) {
+    user = val;
+  }
+
+  bool operator == (const AclService_expireUserPrivilege_args & rhs) const
+  {
+    if (!(user == rhs.user))
+      return false;
+    return true;
+  }
+  bool operator != (const AclService_expireUserPrivilege_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const AclService_expireUserPrivilege_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class AclService_expireUserPrivilege_pargs {
+ public:
+
+
+  virtual ~AclService_expireUserPrivilege_pargs() throw() {}
+
+  const User* user;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _AclService_expireUserPrivilege_result__isset {
+  _AclService_expireUserPrivilege_result__isset() : success(false) {}
+  bool success;
+} _AclService_expireUserPrivilege_result__isset;
+
+class AclService_expireUserPrivilege_result {
+ public:
+
+  AclService_expireUserPrivilege_result() {
+  }
+
+  virtual ~AclService_expireUserPrivilege_result() throw() {}
+
+  AuthStatus success;
+
+  _AclService_expireUserPrivilege_result__isset __isset;
+
+  void __set_success(const AuthStatus& val) {
+    success = val;
+  }
+
+  bool operator == (const AclService_expireUserPrivilege_result & rhs) const
+  {
+    if (!(success == rhs.success))
+      return false;
+    return true;
+  }
+  bool operator != (const AclService_expireUserPrivilege_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const AclService_expireUserPrivilege_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _AclService_expireUserPrivilege_presult__isset {
+  _AclService_expireUserPrivilege_presult__isset() : success(false) {}
+  bool success;
+} _AclService_expireUserPrivilege_presult__isset;
+
+class AclService_expireUserPrivilege_presult {
+ public:
+
+
+  virtual ~AclService_expireUserPrivilege_presult() throw() {}
+
+  AuthStatus* success;
+
+  _AclService_expireUserPrivilege_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
+typedef struct _AclService_expireRolePrivilege_args__isset {
+  _AclService_expireRolePrivilege_args__isset() : role(false) {}
+  bool role;
+} _AclService_expireRolePrivilege_args__isset;
+
+class AclService_expireRolePrivilege_args {
+ public:
+
+  AclService_expireRolePrivilege_args() {
+  }
+
+  virtual ~AclService_expireRolePrivilege_args() throw() {}
+
+  Role role;
+
+  _AclService_expireRolePrivilege_args__isset __isset;
+
+  void __set_role(const Role& val) {
+    role = val;
+  }
+
+  bool operator == (const AclService_expireRolePrivilege_args & rhs) const
+  {
+    if (!(role == rhs.role))
+      return false;
+    return true;
+  }
+  bool operator != (const AclService_expireRolePrivilege_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const AclService_expireRolePrivilege_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class AclService_expireRolePrivilege_pargs {
+ public:
+
+
+  virtual ~AclService_expireRolePrivilege_pargs() throw() {}
+
+  const Role* role;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _AclService_expireRolePrivilege_result__isset {
+  _AclService_expireRolePrivilege_result__isset() : success(false) {}
+  bool success;
+} _AclService_expireRolePrivilege_result__isset;
+
+class AclService_expireRolePrivilege_result {
+ public:
+
+  AclService_expireRolePrivilege_result() {
+  }
+
+  virtual ~AclService_expireRolePrivilege_result() throw() {}
+
+  AuthStatus success;
+
+  _AclService_expireRolePrivilege_result__isset __isset;
+
+  void __set_success(const AuthStatus& val) {
+    success = val;
+  }
+
+  bool operator == (const AclService_expireRolePrivilege_result & rhs) const
+  {
+    if (!(success == rhs.success))
+      return false;
+    return true;
+  }
+  bool operator != (const AclService_expireRolePrivilege_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const AclService_expireRolePrivilege_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _AclService_expireRolePrivilege_presult__isset {
+  _AclService_expireRolePrivilege_presult__isset() : success(false) {}
+  bool success;
+} _AclService_expireRolePrivilege_presult__isset;
+
+class AclService_expireRolePrivilege_presult {
+ public:
+
+
+  virtual ~AclService_expireRolePrivilege_presult() throw() {}
+
+  AuthStatus* success;
+
+  _AclService_expireRolePrivilege_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
 typedef struct _AclService_getRoleInfo_args__isset {
   _AclService_getRoleInfo_args__isset() : role(false) {}
   bool role;
@@ -2545,6 +2769,12 @@ class AclServiceClient : virtual public AclServiceIf {
   void authenticateRole(AuthStatus& _return, const Role& role, const std::vector<Privilege> & privilege);
   void send_authenticateRole(const Role& role, const std::vector<Privilege> & privilege);
   void recv_authenticateRole(AuthStatus& _return);
+  void expireUserPrivilege(AuthStatus& _return, const User& user);
+  void send_expireUserPrivilege(const User& user);
+  void recv_expireUserPrivilege(AuthStatus& _return);
+  void expireRolePrivilege(AuthStatus& _return, const Role& role);
+  void send_expireRolePrivilege(const Role& role);
+  void recv_expireRolePrivilege(AuthStatus& _return);
   void getRoleInfo(RoleInfo& _return, const Role& role);
   void send_getRoleInfo(const Role& role);
   void recv_getRoleInfo(RoleInfo& _return);
@@ -2597,6 +2827,8 @@ class AclServiceProcessor : public ::apache::thrift::TDispatchProcessor {
   void process_revokePrivilege(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_authenticateUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_authenticateRole(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_expireUserPrivilege(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_expireRolePrivilege(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_getRoleInfo(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_getUserInfo(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_getRolesByUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
@@ -2621,6 +2853,8 @@ class AclServiceProcessor : public ::apache::thrift::TDispatchProcessor {
     processMap_["revokePrivilege"] = &AclServiceProcessor::process_revokePrivilege;
     processMap_["authenticateUser"] = &AclServiceProcessor::process_authenticateUser;
     processMap_["authenticateRole"] = &AclServiceProcessor::process_authenticateRole;
+    processMap_["expireUserPrivilege"] = &AclServiceProcessor::process_expireUserPrivilege;
+    processMap_["expireRolePrivilege"] = &AclServiceProcessor::process_expireRolePrivilege;
     processMap_["getRoleInfo"] = &AclServiceProcessor::process_getRoleInfo;
     processMap_["getUserInfo"] = &AclServiceProcessor::process_getUserInfo;
     processMap_["getRolesByUser"] = &AclServiceProcessor::process_getRolesByUser;
@@ -2782,6 +3016,26 @@ class AclServiceMultiface : virtual public AclServiceIf {
       ifaces_[i]->authenticateRole(_return, role, privilege);
     }
     ifaces_[i]->authenticateRole(_return, role, privilege);
+    return;
+  }
+
+  void expireUserPrivilege(AuthStatus& _return, const User& user) {
+    size_t sz = ifaces_.size();
+    size_t i = 0;
+    for (; i < (sz - 1); ++i) {
+      ifaces_[i]->expireUserPrivilege(_return, user);
+    }
+    ifaces_[i]->expireUserPrivilege(_return, user);
+    return;
+  }
+
+  void expireRolePrivilege(AuthStatus& _return, const Role& role) {
+    size_t sz = ifaces_.size();
+    size_t i = 0;
+    for (; i < (sz - 1); ++i) {
+      ifaces_[i]->expireRolePrivilege(_return, role);
+    }
+    ifaces_[i]->expireRolePrivilege(_return, role);
     return;
   }
 

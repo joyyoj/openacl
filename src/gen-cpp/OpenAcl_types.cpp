@@ -689,68 +689,6 @@ void swap(RoleInfo &a, RoleInfo &b) {
   swap(a.__isset, b.__isset);
 }
 
-const char* PrivilegeList::ascii_fingerprint = "636807D016867BC3A79FD54005E0677E";
-const uint8_t PrivilegeList::binary_fingerprint[16] = {0x63,0x68,0x07,0xD0,0x16,0x86,0x7B,0xC3,0xA7,0x9F,0xD5,0x40,0x05,0xE0,0x67,0x7E};
-
-uint32_t PrivilegeList::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->entity.read(iprot);
-          this->__isset.entity = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t PrivilegeList::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  xfer += oprot->writeStructBegin("PrivilegeList");
-
-  xfer += oprot->writeFieldBegin("entity", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->entity.write(oprot);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-void swap(PrivilegeList &a, PrivilegeList &b) {
-  using ::std::swap;
-  swap(a.entity, b.entity);
-  swap(a.__isset, b.__isset);
-}
-
 const char* AuditInfo::ascii_fingerprint = "837A3E976771ACA22191592E21BCA18C";
 const uint8_t AuditInfo::binary_fingerprint[16] = {0x83,0x7A,0x3E,0x97,0x67,0x71,0xAC,0xA2,0x21,0x91,0x59,0x2E,0x21,0xBC,0xA1,0x8C};
 
